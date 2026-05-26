@@ -1,20 +1,19 @@
-# 🌦️ Weather Data Pipeline & Dashboard — Porto (2002–2022)
+# Weather Data Pipeline & Dashboard — Porto (2002–2022)
 
-> **Context:** Data Analyst recruitment assignment completed for COCUS (April 2021).  
-> Built an end-to-end data pipeline ingesting 20 years of weather data via API, storing it in a relational database, and delivering an interactive BI dashboard with strategic business insights.
+> End-to-end data pipeline ingesting 20 years of weather data via API, storing it in a relational database, and delivering an interactive BI dashboard with strategic business insights.
 
 ---
 
-## 📋 Project Overview
+## Project Overview
 
-Working as a Data Analyst for **E-Green**, a fictional renewables company based in Porto specialised in solar and wind energy generation, the objective was to perform a **historical weather analysis** of Porto over the last 20 years (2002–2022) to support:
+Historical weather analysis of Porto over the last 20 years (2002–2022), built for a renewables company specialised in solar and wind energy generation. The goal was to support:
 
 - **Energy production planning** — understanding temperature and wind patterns to optimise solar panel and wind turbine performance
 - **R&D strategy** — analysing precipitation trends to inform technology adaptation decisions
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Tool |
 |---|---|
@@ -26,42 +25,42 @@ Working as a Data Analyst for **E-Green**, a fictional renewables company based 
 
 ---
 
-## 🔄 Pipeline Architecture
+## Pipeline Architecture
 
 ```
 Open-Meteo API (REST)
-        ↓
+        |
   GET Request (KNIME)
-        ↓
+        |
   JSON Parsing & Ungrouping
-        ↓
+        |
   Data Cleaning
   (Missing values, duplicates, date parsing, column filtering)
-        ↓
+        |
   Transformation
   (Date/time extraction, rule engine, GroupBy aggregation, RowID)
-        ↓
-  Load → Microsoft SQL Server + Excel export
-        ↓
+        |
+  Load -> Microsoft SQL Server + Excel export
+        |
   Spotfire Dashboard
 ```
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 - **Source:** [Open-Meteo API](https://open-meteo.com/) — free historical weather API
 - **Location:** Porto, Portugal
 - **Period:** 2002–2022 (daily granularity)
 - **Volume:** 8,000+ records
 - **Fields collected:**
-  - Temperature (max, min, average) in °C
+  - Temperature (max, min, average) in Celsius
   - Wind speed (km/h)
   - Precipitation sum (mm)
 
 ---
 
-## 🔧 KNIME Workflow — Node Summary
+## KNIME Workflow — Node Summary
 
 The KNIME workflow handles the full ETL process:
 
@@ -75,7 +74,7 @@ The KNIME workflow handles the full ETL process:
 | Column Filter | Keeps only relevant columns |
 | String to Date/Time | Converts date strings to proper datetime format |
 | Extract Date/Time Fields | Extracts year, month, day as separate columns |
-| Rule Engine | Applies business logic (e.g. solar panel performance range: 25°C–30°C) |
+| Rule Engine | Applies business logic (e.g. solar panel performance range: 25-30C) |
 | GroupBy | Aggregates data by month/year |
 | RowID | Assigns unique identifiers |
 | Excel Writer | Exports cleaned dataset to .xlsx |
@@ -85,7 +84,7 @@ The KNIME workflow handles the full ETL process:
 
 ---
 
-## 📈 Dashboard — Key Insights
+## Dashboard — Key Insights
 
 The Spotfire dashboard tells the story of Porto's weather patterns across four visual components:
 
@@ -93,7 +92,7 @@ The Spotfire dashboard tells the story of Porto's weather patterns across four v
 Tracks the evolution of average temperature year-on-year, enabling medium-term trend forecasting for solar energy planning.
 
 **2. Average Maximum Temperature by Month (Bar Chart)**
-Shows which months fall within the optimal solar panel performance range (25°C–30°C), with reference lines marking peak performance intervals.
+Shows which months fall within the optimal solar panel performance range (25-30C), with reference lines marking peak performance intervals.
 
 **3. Average Maximum Wind Speed — Yearly & Monthly (Line Charts)**
 Analyses wind patterns to assess viability of wind turbine investment in Porto, considering topography and seasonal variation.
@@ -105,20 +104,20 @@ Reveals clear seasonal precipitation patterns in Porto — key input for the R&D
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 weather-data-pipeline-porto/
-│
-├── COCUS_Weather_Project_KNIME/     # Full KNIME workflow (import directly into KNIME)
-├── COCUS_Weather_Project_KNIME.zip  # Zipped workflow for easy download
-├── Cocus_Weather_Project.xlsx       # Cleaned & transformed dataset output
-└── COCUS_Weather_Project_Walkthrough.pdf  # Full project walkthrough & dashboard narrative
+|
+|-- COCUS_Weather_Project_KNIME/          # Full KNIME workflow (import directly into KNIME)
+|-- COCUS_Weather_Project_KNIME.zip       # Zipped workflow for easy download
+|-- Cocus_Weather_Project.xlsx            # Cleaned & transformed dataset output
+|-- COCUS_Weather_Project_Walkthrough.pdf # Full project walkthrough & dashboard narrative
 ```
 
 ---
 
-## 🚀 How to Reproduce
+## How to Reproduce
 
 1. **Install KNIME** — download from [knime.com](https://www.knime.com/downloads)
 2. **Import the workflow** — open KNIME, go to `File > Import KNIME Workflow`, select `COCUS_Weather_Project_KNIME.zip`
@@ -129,15 +128,18 @@ weather-data-pipeline-porto/
 
 ---
 
-## 💡 Skills Demonstrated
+## Skills Demonstrated
 
 - REST API integration and JSON parsing in a no-code/low-code environment (KNIME)
-- ETL pipeline design: extraction → transformation → load (SQL Server + Excel)
+- ETL pipeline design: extraction -> transformation -> load (SQL Server + Excel)
 - Data cleaning: missing values, duplicates, type conversion, field extraction
 - Business-driven data aggregation and rule-based transformations
 - BI dashboard design with a clear narrative for non-technical stakeholders (Spotfire)
 - Domain application: renewable energy, operational planning, R&D support
 
 ---
+
+*Porto, 2021.*
+
 
 *Assignment completed as part of the COCUS Data Analyst recruitment process — April 2021.*
