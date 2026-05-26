@@ -47,22 +47,11 @@ Open-Meteo API (REST)
 
 ---
 
-## Dataset
+## KNIME Workflow
 
-- **Source:** [Open-Meteo API](https://open-meteo.com/) — free historical weather API
-- **Location:** Porto, Portugal
-- **Period:** 2002–2022 (daily granularity)
-- **Volume:** 8,000+ records
-- **Fields collected:**
-  - Temperature (max, min, average) in Celsius
-  - Wind speed (km/h)
-  - Precipitation sum (mm)
+The full ETL pipeline was built in KNIME. Below is the workflow diagram:
 
----
-
-## KNIME Workflow — Node Summary
-
-The KNIME workflow handles the full ETL process:
+![KNIME Workflow](images/knime_workflow.svg)
 
 | Node | Purpose |
 |---|---|
@@ -84,9 +73,25 @@ The KNIME workflow handles the full ETL process:
 
 ---
 
+## Dataset
+
+- **Source:** [Open-Meteo API](https://open-meteo.com/) — free historical weather API
+- **Location:** Porto, Portugal
+- **Period:** 2002–2022 (monthly aggregated)
+- **Volume:** 252 records
+- **Fields:**
+  - Temperature (max, min, average) in Celsius
+  - Wind speed (km/h)
+  - Precipitation sum (mm)
+  - Season classification
+
+---
+
 ## Dashboard — Key Insights
 
-The Spotfire dashboard tells the story of Porto's weather patterns across four visual components:
+![Spotfire Dashboard](images/spotfire_dashboard.png)
+
+The Spotfire dashboard covers four visual components:
 
 **1. Average Temperature Over 20 Years (Line Chart)**
 Tracks the evolution of average temperature year-on-year, enabling medium-term trend forecasting for solar energy planning.
@@ -100,19 +105,24 @@ Analyses wind patterns to assess viability of wind turbine investment in Porto, 
 **4. Average Precipitation by Month (Bar Chart)**
 Reveals clear seasonal precipitation patterns in Porto — key input for the R&D team's technology adaptation roadmap.
 
-**Key finding:** Porto exhibits distinct, consistent seasonal patterns across all three weather dimensions — providing reliable data for E-Green's strategic energy planning.
+**Key finding:** Porto exhibits distinct, consistent seasonal patterns across all three weather dimensions — providing reliable data for strategic energy planning.
 
 ---
 
 ## Repository Structure
 
 ```
-weather-data-pipeline-porto/
+weather-data-pipeline/
 |
-|-- COCUS_Weather_Project_KNIME/          # Full KNIME workflow (import directly into KNIME)
-|-- COCUS_Weather_Project_KNIME.zip       # Zipped workflow for easy download
-|-- Cocus_Weather_Project.xlsx            # Cleaned & transformed dataset output
-|-- COCUS_Weather_Project_Walkthrough.pdf # Full project walkthrough & dashboard narrative
+|-- images/
+|   |-- knime_workflow.svg        # KNIME ETL pipeline diagram
+|   |-- spotfire_dashboard.png    # Spotfire BI dashboard screenshot
+|
+|-- knime_workflow/
+|   |-- weather_pipeline_knime.zip  # Full KNIME workflow (import directly into KNIME)
+|
+|-- weather_data_porto.xlsx         # Cleaned & transformed dataset output
+|-- README.md
 ```
 
 ---
@@ -120,10 +130,10 @@ weather-data-pipeline-porto/
 ## How to Reproduce
 
 1. **Install KNIME** — download from [knime.com](https://www.knime.com/downloads)
-2. **Import the workflow** — open KNIME, go to `File > Import KNIME Workflow`, select `COCUS_Weather_Project_KNIME.zip`
+2. **Import the workflow** — open KNIME, go to `File > Import KNIME Workflow`, select `knime_workflow/weather_pipeline_knime.zip`
 3. **Run the workflow** — the GET Request node will call the Open-Meteo API and execute the full pipeline
 4. **Optional:** configure the Microsoft SQL Server Connector node with your own SQL Server credentials to load data into a database
-5. **View the output** — the cleaned dataset is exported to `Cocus_Weather_Project.xlsx`
+5. **View the output** — the cleaned dataset is exported to `weather_data_porto.xlsx`
 6. **Dashboard** — load the Excel into Spotfire (trial account available at [tibco.com](https://www.tibco.com/products/tibco-spotfire)) to reproduce the visualisations
 
 ---
@@ -136,10 +146,3 @@ weather-data-pipeline-porto/
 - Business-driven data aggregation and rule-based transformations
 - BI dashboard design with a clear narrative for non-technical stakeholders (Spotfire)
 - Domain application: renewable energy, operational planning, R&D support
-
----
-
-*Porto, 2021.*
-
-
-*Assignment completed as part of the COCUS Data Analyst recruitment process — April 2021.*
