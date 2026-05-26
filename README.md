@@ -89,8 +89,6 @@ The full ETL pipeline was built in KNIME. Below is the workflow diagram:
 
 ## Dashboard — Key Insights
 
-![Spotfire Dashboard](images/spotfire_dashboard.png)
-
 The Spotfire dashboard covers four visual components:
 
 **1. Average Temperature Over 20 Years (Line Chart)**
@@ -116,7 +114,6 @@ weather-data-pipeline/
 |
 |-- images/
 |   |-- knime_workflow.svg        # KNIME ETL pipeline diagram
-|   |-- spotfire_dashboard.png    # Spotfire BI dashboard screenshot
 |
 |-- knime_workflow/
 |   |-- weather_pipeline_knime.zip  # Full KNIME workflow (import directly into KNIME)
@@ -146,3 +143,5 @@ weather-data-pipeline/
 - Business-driven data aggregation and rule-based transformations
 - BI dashboard design with a clear narrative for non-technical stakeholders (Spotfire)
 - Domain application: renewable energy, operational planning, R&D support
+
+
